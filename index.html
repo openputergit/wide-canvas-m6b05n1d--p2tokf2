@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envagrow - Waste Management Solution</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-green-50 to-emerald-100 min-h-screen">
+    <nav class="p-4 glass-effect fixed w-full z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="https://via.placeholder.com/50" alt="Envagrow Logo" class="h-12">
+                <span class="ml-2 text-2xl font-bold text-green-800">Envagrow</span>
+            </div>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="#" class="text-green-800 hover:text-green-600">Home</a>
+                <a href="#" class="text-green-800 hover:text-green-600">About</a>
+                <a href="#" class="text-green-800 hover:text-green-600">Services</a>
+                <a href="#" class="text-green-800 hover:text-green-600">Contact</a>
+                <button onclick="showLoginModal()" class="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition">Login</button>
+            </div>
+
+            <div class="md:hidden">
+                <button onclick="toggleMobileMenu()" class="text-green-800">
+                    <i class="bi bi-list text-3xl"></i>
+                </button>
+            </div>
+
+            <img src="https://via.placeholder.com/50" alt="AMC Logo" class="h-12">
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="fixed top-0 left-0 w-full h-screen bg-white z-40 transform translate-x-full transition-transform duration-300">
+        <div class="p-4">
+            <button onclick="toggleMobileMenu()" class="float-right text-3xl">&times;</button>
+            <div class="flex flex-col space-y-4 mt-16">
+                <a href="#" class="text-green-800 text-xl p-2">Home</a>
+                <a href="#" class="text-green-800 text-xl p-2">About</a>
+                <a href="#" class="text-green-800 text-xl p-2">Services</a>
+                <a href="#" class="text-green-800 text-xl p-2">Contact</a>
+                <button onclick="showLoginModal()" class="bg-green-600 text-white px-6 py-2 rounded-full">Login</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-12 px-4">
+        <div class="container mx-auto flex flex-wrap items-center">
+            <div class="w-full md:w-1/2 mb-8 md:mb-0">
+                <h1 class="text-4xl md:text-6xl font-bold text-green-800 mb-6">
+                    Transform Waste into <span class="text-green-600">Rewards</span>
+                </h1>
+                <p class="text-lg text-gray-600 mb-8">
+                    Join Envagrow's initiative with AMC to make Ahmedabad cleaner and greener. Earn rewards for your contribution to waste management.
+                </p>
+                <button onclick="showLoginModal()" class="bg-green-600 text-white px-8 py-3 rounded-full text-lg hover:bg-green-700 transition shadow-lg">
+                    Get Started
+                </button>
+            </div>
+            <div class="w-full md:w-1/2 flex justify-center">
+                <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b" alt="Environmental" class="w-4/5 rounded-lg shadow-2xl float-animation">
+            </div>
+        </div>
+    </main>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg shadow-xl w-full max-w-md">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold text-green-800">Login</h2>
+                        <button onclick="hideLoginModal()" class="text-gray-500 hover:text-gray-700">
+                            <i class="bi bi-x-lg"></i>
+                        </button>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex space-x-4">
+                            <button onclick="switchForm('login')" id="loginBtn" class="flex-1 py-2 rounded-lg font-medium text-center transition active-tab">
+                                Login
+                            </button>
+                            <button onclick="switchForm('register')" id="registerBtn" class="flex-1 py-2 rounded-lg font-medium text-center transition">
+                                Register
+                            </button>
+                        </div>
+
+                        <div class="space-y-4">
+                            <select id="userType" class="w-full p-3 border rounded-lg">
+                                <option value="user">User</option>
+                                <option value="amc_office">AMC Office</option>
+                                <option value="amc_worker">AMC Worker</option>
+                            </select>
+
+                            <div id="loginForm">
+                                <input type="email" placeholder="Email" class="w-full p-3 border rounded-lg mb-4">
+                                <input type="password" placeholder="Password" class="w-full p-3 border rounded-lg mb-4">
+                                <button onclick="handleLogin()" class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition">
+                                    Login
+                                </button>
+                            </div>
+
+                            <div id="registerForm" class="hidden">
+                                <input type="text" placeholder="Full Name" class="w-full p-3 border rounded-lg mb-4">
+                                <input type="email" placeholder="Email" class="w-full p-3 border rounded-lg mb-4">
+                                <input type="password" placeholder="Password" class="w-full p-3 border rounded-lg mb-4">
+                                <input type="password" placeholder="Confirm Password" class="w-full p-3 border rounded-lg mb-4">
+                                <button onclick="handleRegister()" class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition">
+                                    Register
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('translate-x-full');
+        }
+
+        // Login modal functionality
+        function showLoginModal() {
+            document.getElementById('loginModal').classList.remove('hidden');
+        }
+
+        function hideLoginModal() {
+            document.getElementById('loginModal').classList.add('hidden');
+        }
+
+        // Form switching functionality
+        function switchForm(formType) {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const loginBtn = document.getElementById('loginBtn');
+            const registerBtn = document.getElementById('registerBtn');
+
+            if (formType === 'login') {
+                loginForm.classList.remove('hidden');
+                registerForm.classList.add('hidden');
+                loginBtn.classList.add('text-green-600', 'border-b-2', 'border-green-600');
+                registerBtn.classList.remove('text-green-600', 'border-b-2', 'border-green-600');
+            } else {
+                loginForm.classList.add('hidden');
+                registerForm.classList.remove('hidden');
+                registerBtn.classList.add('text-green-600', 'border-b-2', 'border-green-600');
+                loginBtn.classList.remove('text-green-600', 'border-b-2', 'border-green-600');
+            }
+        }
+
+        // Initialize the active tab
+        switchForm('login');
+
+        // Handle login
+        async function handleLogin() {
+            const userType = document.getElementById('userType').value;
+            // Add login logic here using the MongoDB endpoint
+            try {
+                const response = await fetch('https://r0c8kgwocscg8gsokogwwsw4.zetaverse.one/mongodb', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer b49JFfeIkQYxNh1j3QWaDUwymWQ2',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        appSlug: 'envagrow-123',
+                        action: 'read',
+                        collection: 'users',
+                        conditions: {
+                            // Add login conditions here
+                        }
+                    })
+                });
+                
+                // Handle response and redirect based on user type
+                if (userType === 'user') {
+                    window.location.href = '/user-dashboard';
+                } else if (userType === 'amc_office') {
+                    window.location.href = '/amc-office-dashboard';
+                } else {
+                    window.location.href = '/amc-worker-dashboard';
+                }
+            } catch (error) {
+                console.error('Login failed:', error);
+            }
+        }
+
+        // Handle registration
+        async function handleRegister() {
+            const userType = document.getElementById('userType').value;
+            // Add registration logic here using the MongoDB endpoint
+            try {
+                const response = await fetch('https://r0c8kgwocscg8gsokogwwsw4.zetaverse.one/mongodb', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer b49JFfeIkQYxNh1j3QWaDUwymWQ2',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        appSlug: 'envagrow-123',
+                        action: 'create',
+                        collection: 'users',
+                        data: {
+                            // Add user data here
+                        }
+                    })
+                });
+                
+                // Handle successful registration
+                alert('Registration successful! Please login.');
+                switchForm('login');
+            } catch (error) {
+                console.error('Registration failed:', error);
+            }
+        }
+    </script>
+<script>document.body.addEventListener('wheel', e => { if (!e.ctrlKey) return; e.preventDefault(); return }, { passive: false })</script>
+	</body>
+</html>
